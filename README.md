@@ -33,3 +33,4 @@ The dashboard map center, road markers, road labels and default route origin are
 
 ## Delhi-focused interface update
 The navigation switches between separate dashboard views: Dashboard, Live Map, Prediction, Traffic Analytics, Saved Routes, Alerts & Notifications, Chat Assistant and Settings. The UI uses Delhi-specific sample road names and plain-language explanations. Road counts, congestion labels, speeds and charts are illustrative, not verified live Delhi observations. The initial model trains on synthetic data unless you provide a verified Delhi dataset. Routing estimates use public OSRM and do not include live traffic congestion.
+# delhi-traffic-prediction
