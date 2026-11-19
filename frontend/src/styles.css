@@ -1,0 +1,3014 @@
+/* ==========================================================================
+   TrafficSense UI - Modern Advanced Dark Theme
+   ========================================================================== */
+
+:root {
+  --bg-deep: #060b17;
+  --bg-surface: #0a1124;
+  --bg-card: #0d172e;
+  --bg-card-hover: #111d38;
+  --bg-input: #121c35;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-focus: #3b82f6;
+  --border-glow: rgba(59, 130, 246, 0.35);
+
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --color-high: #ef4444;
+  --color-high-bg: rgba(239, 68, 68, 0.15);
+  --color-high-glow: rgba(239, 68, 68, 0.4);
+
+  --color-moderate: #f59e0b;
+  --color-moderate-bg: rgba(245, 158, 11, 0.15);
+  --color-moderate-glow: rgba(245, 158, 11, 0.4);
+
+  --color-low: #10b981;
+  --color-low-bg: rgba(16, 185, 129, 0.15);
+  --color-low-glow: rgba(16, 185, 129, 0.4);
+
+  --color-primary: #2563eb;
+  --color-accent: #0ea5e9;
+  --color-purple: #8b5cf6;
+
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  font-size: 13.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+/* ==========================================================================
+   App Shell & Overall Structure
+   ========================================================================== */
+
+.ts-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg-deep);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ambient Top Skyline Glow Backdrop */
+.ts-skyline-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background-image: url('/header_skyline.jpg');
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.18;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Top Header Bar
+   ========================================================================== */
+
+.ts-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 68px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(8, 14, 30, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ts-brand-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ts-brand-logo {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #9066fe 100%);
+  box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+}
+
+.ts-brand-logo svg {
+  color: #ffffff;
+}
+
+.ts-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-brand-title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.ts-brand-subtitle {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* Global Search Bar */
+.ts-search-container {
+  position: relative;
+  width: 440px;
+  max-width: 40vw;
+}
+
+.ts-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(16, 26, 50, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  padding: 0 16px;
+  height: 40px;
+  transition: var(--transition);
+}
+
+.ts-search-bar:focus-within {
+  border-color: #3b82f6;
+  background: rgba(20, 32, 60, 0.95);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.ts-search-bar input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 12.5px;
+  width: 100%;
+}
+
+.ts-search-bar input::placeholder {
+  color: #7184a4;
+}
+
+.ts-search-icon {
+  color: #7184a4;
+  flex-shrink: 0;
+}
+
+.ts-search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #0f1a36;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  z-index: 100;
+}
+
+.ts-search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 12.5px;
+}
+
+.ts-search-item:hover {
+  background: rgba(59, 130, 246, 0.15);
+  color: #ffffff;
+}
+
+/* Top Header Right Section */
+.ts-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ts-weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ts-weather-icon {
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+}
+
+.ts-weather-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-weather-temp {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.ts-weather-city {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.ts-datetime-widget {
+  display: flex;
+  flex-direction: column;
+  padding-left: 18px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.ts-date-text {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ts-time-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.ts-icon-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.ts-icon-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ts-badge-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: var(--radius-full);
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-surface);
+}
+
+.ts-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-user-profile:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ts-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ts-user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Layout: Sidebar + Main Content
+   ========================================================================== */
+
+.ts-body-layout {
+  display: flex;
+  flex: 1;
+  position: relative;
+  z-index: 10;
+}
+
+/* Sidebar */
+.ts-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--border-subtle);
+  background: #080e1e;
+  min-height: calc(100vh - 68px);
+}
+
+.ts-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ts-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+}
+
+.ts-nav-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ts-nav-item.active {
+  color: #ffffff;
+  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+  font-weight: 700;
+}
+
+.ts-nav-item.active svg {
+  color: #ffffff;
+}
+
+.ts-nav-badge {
+  margin-left: auto;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+/* Sidebar Bottom Promo Card */
+.ts-sidebar-card {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px;
+  background-image: url('/highway_trails.jpg');
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.ts-sidebar-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 14, 30, 0.95) 0%, rgba(8, 14, 30, 0.35) 60%, rgba(8, 14, 30, 0.1) 100%);
+  pointer-events: none;
+}
+
+.ts-sidebar-card-text {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 1.35;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+/* Main Content Area */
+.ts-main-content {
+  flex: 1;
+  padding: 20px 24px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Stat Metric Cards Grid (Top 4 Cards)
+   ========================================================================== */
+
+.ts-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.ts-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: var(--transition);
+}
+
+.ts-stat-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.ts-stat-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.ts-stat-icon-wrap.green {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+
+.ts-stat-icon-wrap.red {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+}
+
+.ts-stat-icon-wrap.yellow {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+}
+
+.ts-stat-icon-wrap.blue {
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25);
+}
+
+.ts-stat-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ts-stat-label {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ts-stat-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.ts-stat-number {
+  font-size: 21px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.ts-stat-trend {
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ts-stat-trend.positive {
+  color: #10b981;
+}
+
+.ts-stat-trend.negative {
+  color: #ef4444;
+}
+
+.ts-stat-trend.online {
+  color: #10b981;
+}
+
+.ts-stat-subtext {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   Middle Grid: Live Map + Prediction Panels
+   ========================================================================== */
+
+.ts-middle-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 16px;
+}
+
+/* Map Card */
+.ts-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.ts-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ts-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ts-card-title-icon {
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+}
+
+.ts-card-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.ts-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.ts-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+/* Map Container & Floating Map Controls */
+.ts-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+}
+
+.ts-map-canvas {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* Segmented Controls at top left of Map */
+.ts-map-top-bar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 400;
+  pointer-events: none;
+}
+
+.ts-map-layer-selector {
+  pointer-events: auto;
+  display: flex;
+  background: rgba(13, 23, 46, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.ts-layer-btn {
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+}
+
+.ts-layer-btn:hover {
+  color: #ffffff;
+}
+
+.ts-layer-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+}
+
+.ts-map-search-box {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 23, 46, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.ts-map-search-box input {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 11.5px;
+  width: 140px;
+}
+
+.ts-map-search-box input::placeholder {
+  color: #64748b;
+}
+
+.ts-map-search-btn {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.ts-map-search-btn:hover {
+  color: #ffffff;
+}
+
+/* Map Zoom & Controls */
+.ts-map-controls-bottom-left {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 400;
+}
+
+.ts-map-ctrl-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 23, 46, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+}
+
+.ts-map-ctrl-btn:hover {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Map Legend */
+.ts-map-legend {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(13, 23, 46, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  z-index: 400;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ts-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ts-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.ts-legend-dot.green { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.ts-legend-dot.yellow { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+.ts-legend-dot.red { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
+
+/* Custom Leaflet Marker Styling */
+.ts-leaflet-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ts-leaflet-marker:hover {
+  transform: scale(1.2);
+}
+
+.ts-leaflet-marker.red {
+  background: radial-gradient(circle, #ff4d6d 0%, #dc2626 100%);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.8);
+}
+
+.ts-leaflet-marker.yellow {
+  background: radial-gradient(circle, #fbbf24 0%, #d97706 100%);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
+}
+
+.ts-leaflet-marker.green {
+  background: radial-gradient(circle, #34d399 0%, #059669 100%);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.8);
+}
+
+.ts-leaflet-marker svg {
+  color: #ffffff;
+}
+
+/* Pulsing ring around marker */
+.ts-leaflet-marker::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: markerPulse 2s infinite ease-out;
+  pointer-events: none;
+}
+.ts-leaflet-marker.red::before { border: 2px solid #ef4444; }
+.ts-leaflet-marker.yellow::before { border: 2px solid #f59e0b; }
+.ts-leaflet-marker.green::before { border: 2px solid #10b981; }
+
+@keyframes markerPulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Leaflet Popup White Card (Exact replica of mockup) */
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+.ts-popup-card {
+  padding: 14px 16px;
+  min-width: 175px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ts-popup-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ts-popup-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.ts-popup-badge.high { background: #ef4444; }
+.ts-popup-badge.moderate { background: #f59e0b; }
+.ts-popup-badge.low { background: #10b981; }
+
+.ts-popup-info {
+  font-size: 11px;
+  color: #475569;
+}
+
+.ts-popup-prediction {
+  font-size: 11px;
+  color: #475569;
+}
+
+.ts-popup-prediction b.high { color: #ef4444; }
+.ts-popup-prediction b.moderate { color: #f59e0b; }
+.ts-popup-prediction b.low { color: #10b981; }
+
+.ts-popup-link {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #2563eb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.ts-popup-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Right Column: Prediction + Results + Alternative Routes
+   ========================================================================== */
+
+.ts-prediction-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Predict Traffic Congestion Form */
+.ts-predict-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ts-predict-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.ts-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ts-field-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ts-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ts-select {
+  width: 100%;
+  background: #111a33;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.25);
+}
+
+.ts-select-chevron {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #64748b;
+}
+
+.ts-params-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.ts-param-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ts-param-col span {
+  font-size: 10.5px;
+  color: var(--text-dim);
+}
+
+.ts-param-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111a33;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  padding: 7px 9px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-param-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ts-param-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ts-param-btn svg {
+  color: #94a3b8;
+}
+
+.ts-predict-btn {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #0284c7 0%, #4f46e5 50%, #9333ea 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.35);
+  margin-top: 4px;
+}
+
+.ts-predict-btn:hover {
+  opacity: 0.94;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(79, 70, 229, 0.5);
+}
+
+.ts-predict-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Prediction Result Card */
+.ts-result-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ts-result-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.ts-result-banner.moderate {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.ts-result-banner.low {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.ts-result-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+  flex-shrink: 0;
+}
+
+.ts-result-icon.moderate {
+  background: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+
+.ts-result-icon.low {
+  background: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+.ts-result-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-result-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ts-result-conf {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* 4 Mini Stat Strip */
+.ts-mini-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  text-align: center;
+}
+
+.ts-mini-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ts-mini-stat-val {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ts-mini-stat-val.high { color: #ef4444; }
+.ts-mini-stat-val.moderate { color: #f59e0b; }
+.ts-mini-stat-val.low { color: #10b981; }
+
+.ts-mini-stat-lbl {
+  font-size: 9.5px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+/* Alternative Routes Card */
+.ts-routes-card {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ts-route-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.ts-route-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.ts-route-name-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ts-route-right-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ts-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.ts-badge.low {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.ts-badge.moderate {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.ts-badge.high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.ts-route-time {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  min-width: 45px;
+  text-align: right;
+}
+
+/* ==========================================================================
+   Bottom Row Grid: Trend Chart + Donut Chart + AI Assistant
+   ========================================================================== */
+
+.ts-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 1.1fr;
+  gap: 16px;
+}
+
+/* Trend Chart Card */
+.ts-trend-card {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-chart-container {
+  width: 100%;
+  height: 180px;
+  margin-top: 10px;
+}
+
+.ts-chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Donut Chart Card */
+.ts-donut-card {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-donut-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 190px;
+  position: relative;
+}
+
+.ts-donut-chart-wrap {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.ts-donut-center-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ts-donut-center-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.ts-donut-center-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.ts-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ts-donut-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ts-donut-legend-item b {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* AI Assistant Card (Matching Bottom Right in Mockup) */
+.ts-chat-card {
+  display: flex;
+  flex-direction: column;
+  height: 255px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.ts-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ts-chat-bot-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.ts-chat-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.ts-chat-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-chat-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.ts-chat-subtitle {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.ts-chat-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ts-chat-msg {
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  font-size: 11.5px;
+  line-height: 1.45;
+  max-width: 90%;
+  word-break: break-word;
+}
+
+.ts-chat-msg.bot {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.ts-chat-msg.user {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.ts-chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.ts-chat-suggestion-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: #93c5fd;
+  font-size: 10px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-chat-suggestion-chip:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+.ts-chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ts-chat-input-bar input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  color: #ffffff;
+  font-size: 11.5px;
+}
+
+.ts-chat-input-bar input:focus {
+  border-color: #3b82f6;
+}
+
+.ts-chat-send-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.ts-chat-send-btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Full Pages: Live Map, Prediction Studio, Analytics, Routes, Alerts, Settings
+   ========================================================================== */
+
+.ts-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.ts-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ts-page-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-page-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ts-page-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.ts-page-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.ts-page-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Table Style for Analytics / Road lists */
+.ts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.ts-table th {
+  text-align: left;
+  padding: 10px 14px;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.ts-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: #ffffff;
+}
+
+.ts-table tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Alerts List */
+.ts-alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.ts-alert-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.ts-alert-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ts-alert-icon-box.high { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.ts-alert-icon-box.moderate { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.ts-alert-icon-box.low { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .ts-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ts-middle-grid {
+    grid-template-columns: 1fr;
+  }
+  .ts-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Advanced Attractive Map Styles & Animation Overlays
+   ========================================================================== */
+
+/* Neon Corridors Glow */
+.ts-corridor-flow {
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+.ts-corridor-anim {
+  stroke-dasharray: 10, 14;
+  animation: trafficFlowPulse 2s linear infinite;
+}
+
+@keyframes trafficFlowPulse {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Enhanced Leaflet Popup with High-Res Photo Header */
+.leaflet-popup-content-wrapper {
+  background: #0f1a35 !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(37, 99, 235, 0.25) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.leaflet-popup-tip {
+  background: #0f1a35 !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+.ts-popup-card-modern {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-popup-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  background: #080e1e;
+}
+
+.ts-popup-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ts-popup-thumb-wrap:hover .ts-popup-thumb-img {
+  transform: scale(1.05);
+}
+
+.ts-popup-thumb-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ts-popup-live-red-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.ts-popup-content-box {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ts-popup-title-modern {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ts-popup-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ts-popup-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.ts-popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-popup-btn.primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.ts-popup-btn.primary:hover {
+  background: #1d4ed8;
+}
+
+.ts-popup-btn.cam {
+  background: rgba(255, 255, 255, 0.08);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.ts-popup-btn.cam:hover {
+  background: rgba(56, 189, 248, 0.2);
+  color: #ffffff;
+}
+
+/* CCTV Live Camera Surveillance HUD Modal */
+.ts-cctv-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 9, 24, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeInModal 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.ts-cctv-modal {
+  width: 860px;
+  max-width: 95vw;
+  background: #091126;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(37, 99, 235, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.ts-cctv-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ts-cctv-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ts-cctv-rec-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.ts-cctv-viewscreen {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: #000000;
+  overflow: hidden;
+}
+
+.ts-cctv-feed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ts-cctv-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.25) 51%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.ts-cctv-telemetry-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 14px 18px;
+  background: #0d1630;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ts-telemetry-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ts-telemetry-lbl {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ts-telemetry-val {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ts-telemetry-val.highlight {
+  color: #38bdf8;
+}
+
+/* Map Action Overlay Pills (Top Right inside Map) */
+.ts-map-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(13, 23, 46, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  padding: 3px 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.ts-map-pill-btn {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ts-map-pill-btn:hover {
+  color: #ffffff;
+}
+
+.ts-map-pill-btn.active {
+  background: rgba(59, 130, 246, 0.25);
+  border: 1px solid #3b82f6;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Light Mode Theme Overrides
+   ========================================================================== */
+
+[data-theme="light"] {
+  --bg-deep: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-input: #f8fafc;
+  --border-subtle: rgba(15, 23, 42, 0.09);
+  --border-focus: #2563eb;
+  --border-glow: rgba(37, 99, 235, 0.25);
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #94a3b8;
+}
+
+[data-theme="light"] .ts-app {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .ts-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom-color: var(--border-subtle);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .ts-sidebar {
+  background: #ffffff;
+  border-right-color: var(--border-subtle);
+}
+
+[data-theme="light"] .ts-brand-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .ts-search-bar {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .ts-search-bar input {
+  color: #0f172a;
+}
+
+[data-theme="light"] .ts-search-bar input::placeholder {
+  color: #64748b;
+}
+
+[data-theme="light"] .ts-stat-card,
+[data-theme="light"] .ts-card,
+[data-theme="light"] .ts-chat-card,
+[data-theme="light"] .ts-alert-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .ts-stat-number,
+[data-theme="light"] .ts-card-title,
+[data-theme="light"] .ts-result-title,
+[data-theme="light"] .ts-donut-center-num,
+[data-theme="light"] .ts-chat-title,
+[data-theme="light"] .ts-weather-temp,
+[data-theme="light"] .ts-time-text,
+[data-theme="light"] .ts-user-name,
+[data-theme="light"] .ts-route-name-side {
+  color: #0f172a;
+}
+
+[data-theme="light"] .ts-select {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .ts-param-btn {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .ts-chat-body {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .ts-chat-msg.bot {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #1e293b;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .ts-chat-input-bar input {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+[data-theme="light"] .ts-icon-btn {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #475569;
+}
+
+[data-theme="light"] .ts-icon-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+[data-theme="light"] .ts-user-profile {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .ts-skyline-backdrop {
+  opacity: 0.06;
+}
+
+/* ==========================================================================
+   Delhi Photos Showcase Carousel
+   ========================================================================== */
+
+.ts-showcase-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.ts-showcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ts-showcase-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ts-showcase-carousel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+
+.ts-showcase-card {
+  flex: 0 0 240px;
+  height: 145px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  background: #091124;
+}
+
+.ts-showcase-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(37, 99, 235, 0.3);
+}
+
+.ts-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.ts-showcase-card:hover .ts-showcase-img {
+  transform: scale(1.08);
+}
+
+.ts-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 14, 30, 0.95) 0%, rgba(8, 14, 30, 0.3) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+
+.ts-showcase-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ts-showcase-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.ts-showcase-badge.high { background: #ef4444; color: #fff; }
+.ts-showcase-badge.moderate { background: #f59e0b; color: #fff; }
+.ts-showcase-badge.low { background: #10b981; color: #fff; }
+
+.ts-showcase-bottom-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ts-showcase-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.ts-showcase-sub {
+  font-size: 10px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   Floating AI Assistant Trigger Icon & Searchable Popover
+   ========================================================================== */
+
+.ts-floating-ai-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5), 0 0 15px rgba(139, 92, 246, 0.4);
+  cursor: pointer;
+  z-index: 1500;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.ts-floating-ai-trigger:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.7), 0 0 25px rgba(139, 92, 246, 0.6);
+}
+
+.ts-floating-ai-ping {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #060b17;
+  animation: pulseDot 2s infinite;
+}
+
+/* Floating AI Assistant Window */
+.ts-floating-ai-window {
+  position: fixed;
+  bottom: 86px;
+  right: 24px;
+  width: 440px;
+  max-width: calc(100vw - 40px);
+  height: 600px;
+  max-height: calc(100vh - 120px);
+  background: #091228;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(37, 99, 235, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1500;
+  animation: slideUpAi 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .ts-floating-ai-window {
+  background: #ffffff;
+  border-color: rgba(37, 99, 235, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 25px rgba(37, 99, 235, 0.15);
+}
+
+@keyframes slideUpAi {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ts-floating-ai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ts-floating-ai-search-box {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ts-floating-ai-search-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0 12px;
+  height: 36px;
+}
+
+.ts-floating-ai-search-input input {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 12px;
+  width: 100%;
+}
+
+.ts-floating-ai-cat-pills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.ts-floating-ai-cat-btn {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.ts-floating-ai-cat-btn:hover {
+  color: #ffffff;
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.ts-floating-ai-cat-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.ts-floating-ai-questions-list {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 140px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.ts-floating-ai-q-item {
+  text-align: left;
+  font-size: 11px;
+  color: #93c5fd;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ts-floating-ai-q-item:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   Map API Key Config Modal
+   ========================================================================== */
+
+.ts-api-modal {
+  width: 520px;
+  max-width: 95vw;
+  background: #0a1329;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="light"] .ts-api-modal {
+  background: #ffffff;
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.ts-api-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   Escape Traffic: AI Smart Bypass Engine Styles
+   ========================================================================== */
+
+/* Dashboard Escape Banner Card */
+.ts-escape-banner-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(14, 165, 233, 0.1) 50%, rgba(139, 92, 246, 0.12) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+  margin-bottom: 6px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme="light"] .ts-escape-banner-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(14, 165, 233, 0.06) 50%, rgba(99, 102, 241, 0.08) 100%);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.08);
+}
+
+.ts-escape-banner-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.22);
+}
+
+.ts-escape-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ts-escape-pulse-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.5);
+}
+
+.ts-escape-banner-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+}
+
+.ts-escape-banner-pill {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.ts-escape-banner-desc {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.ts-escape-launch-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #10b981 0%, #0284c7 100%);
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-escape-launch-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+}
+
+/* Escape Traffic Modal */
+.ts-escape-modal {
+  width: 900px;
+  max-width: 95vw;
+  max-height: 92vh;
+  background: #091228;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: var(--radius-lg);
+  overflow-y: auto;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(16, 185, 129, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="light"] .ts-escape-modal {
+  background: #ffffff;
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15), 0 0 30px rgba(16, 185, 129, 0.12);
+}
+
+.ts-escape-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Hotspot Pill Selectors */
+.ts-escape-hotspots-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.ts-escape-hotspot-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.ts-escape-hotspot-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.ts-escape-hotspot-btn.active {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+}
+
+.ts-escape-hotspot-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.ts-escape-hotspot-speed {
+  font-size: 10px;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* Comparison Grid: Jammed vs Escape */
+.ts-escape-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .ts-escape-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ts-escape-card-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+}
+
+.ts-escape-card-col.jammed {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.ts-escape-card-col.escape {
+  background: rgba(16, 185, 129, 0.09);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.12);
+}
+
+.ts-escape-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ts-escape-tag {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.ts-escape-tag.jammed {
+  background: #ef4444;
+  color: #fff;
+}
+
+.ts-escape-tag.escape {
+  background: #10b981;
+  color: #fff;
+}
+
+.ts-escape-time-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.ts-escape-time-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.ts-escape-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .ts-escape-metrics-strip {
+  background: #f8fafc;
+}
+
+.ts-escape-metric-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ts-escape-metric-lbl {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ts-escape-metric-val {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.ts-escape-metric-val.green {
+  color: #10b981;
+}
+
+/* Step-by-step turns */
+.ts-escape-steps-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ts-escape-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.ts-escape-step-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #05141b;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Map Escape Active Banner */
+.ts-map-escape-active-banner {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 1000;
+  background: rgba(6, 14, 30, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid #00f5a0;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 245, 160, 0.3);
+  animation: slideDownBanner 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .ts-map-escape-active-banner {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #10b981;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+@keyframes slideDownBanner {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ts-escape-dismiss-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.ts-escape-dismiss-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* Neon polyline glow for active escape route */
+.ts-escape-flow {
+  filter: drop-shadow(0 0 8px #00f5a0);
+  animation: pulseGlow 1.8s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { stroke-opacity: 0.85; stroke-width: 6; }
+  100% { stroke-opacity: 1; stroke-width: 7.5; }
+}
+
+
+
+
+/* ==========================================================================
+   Hide Leaflet Map Attribution (bottom-right text)
+   ========================================================================== */
+.leaflet-control-attribution {
+  display: none !important;
+}
+.leaflet-bottom.leaflet-right .leaflet-control-attribution {
+  display: none !important;
+}
+
+/* ==========================================================================
+   AI Bot: Improved Typography & Visual Style
+   ========================================================================== */
+
+/* Floating window title gradient */
+.ts-floating-ai-header .ts-chat-avatar {
+  background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
+  box-shadow: 0 0 18px rgba(99, 102, 241, 0.6), 0 0 8px rgba(56, 189, 248, 0.4);
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: aiGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes aiGlow {
+  0%  { box-shadow: 0 0 12px rgba(99,102,241,0.5), 0 0 6px rgba(56,189,248,0.3); }
+  100%{ box-shadow: 0 0 22px rgba(99,102,241,0.85), 0 0 14px rgba(56,189,248,0.6); }
+}
+
+/* Bot assistant name gradient text */
+.ts-floating-ai-header span[style*="fontWeight: 800"] {
+  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 13.5px !important;
+  letter-spacing: 0.3px;
+}
+
+/* Bot chat messages — improved typography */
+.ts-chat-msg.bot {
+  font-size: 12.5px !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.2px;
+  color: var(--text-main);
+  border-left: 2px solid #6366f1;
+  padding-left: 8px;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+.ts-chat-msg.user {
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.2px;
+  animation: fadeSlideIn 0.3s ease both;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Question list item upgrade */
+.ts-floating-ai-q-item {
+  font-size: 11.5px !important;
+  line-height: 1.5;
+  letter-spacing: 0.15px;
+  padding: 7px 10px !important;
+  border-radius: 7px !important;
+}
+
+/* Search input inside AI bot */
+.ts-floating-ai-search-input input {
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+/* Category pill style refinement */
+.ts-floating-ai-cat-btn {
+  font-size: 10.5px !important;
+  letter-spacing: 0.3px;
+  padding: 4px 10px !important;
+}
+
+/* ==========================================================================
+   Prediction Section: Route Finder Card
+   ========================================================================== */
+.ts-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   CCTV HUD Enhancements: Scanline & Rec-dot pulse
+   ========================================================================== */
+@keyframes ts-ping {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* Ensure CCTV viewscreen image covers properly */
+.ts-cctv-viewscreen {
+  position: relative;
+  overflow: hidden;
+}
+
+.ts-cctv-feed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Light mode overrides for new elements
+   ========================================================================== */
+[data-theme="light"] .ts-chat-msg.bot {
+  border-left-color: #6366f1;
+  background: rgba(99, 102, 241, 0.06);
+}
+
+[data-theme="light"] .ts-floating-ai-header span[style*="fontWeight: 800"] {
+  background: linear-gradient(90deg, #4f46e5, #0284c7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==========================================================================
+   Map Layers & Base Tile Appearance
+   ========================================================================== */
+
+/* Clean map canvas background — ensures tiles render with natural clarity */
+.ts-map-canvas {
+  background: #f1f5f9;
+}
+
+[data-theme="dark"] .ts-map-canvas {
+  background: #0b1329;
+}
+
+/* Ensure Leaflet tiles are sharp and unaltered */
+.leaflet-tile-pane {
+  filter: none !important;
+}
+
+/* Attribution styling: clean and subtle */
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Route Origin (A) and Destination (B) Pin Badges */
+.ts-route-pin-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 11px;
+  color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
+  border: 2px solid #ffffff;
+  width: 26px;
+  height: 26px;
+}
+
+.ts-route-pin-badge.origin {
+  background: #10b981;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.8);
+}
+
+.ts-route-pin-badge.dest {
+  background: #ef4444;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+}
+
+
+/* ==========================================================================
+   Interactive Parameter Selectors (Time, Day, Horizon)
+   ========================================================================== */
+.ts-param-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ts-param-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #0d172e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  padding: 7px 22px 7px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+}
+
+[data-theme="light"] .ts-param-select {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.ts-param-select:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: #111e3d;
+}
+
+[data-theme="light"] .ts-param-select:hover {
+  background: #ffffff;
+  border-color: #0284c7;
+}
+
+.ts-param-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+.ts-param-chevron {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #64748b;
+}
+
+.ts-param-lbl {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  letter-spacing: 0.2px;
+}
